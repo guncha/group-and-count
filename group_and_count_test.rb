@@ -16,15 +16,11 @@ class GroupAndCountTest < MiniTest::Test
 
     assert_equal(
       {"bill.split" => 3, "promo.used" => 2},
-      GroupAndCount.group_and_count(data, "event"))
-
-    assert_equal(
-      {"bill.split" => 3, "promo.used" => 2},
       GroupAndCount.group_and_count(data, :event))
 
     assert_equal(
       {},
-      GroupAndCount.group_and_count(data, "some_other_key"))
+      GroupAndCount.group_and_count(data, :some_other_key))
 
   end
 
@@ -32,11 +28,11 @@ class GroupAndCountTest < MiniTest::Test
 
     assert_equal(
       {"bill.split"=>{"morning"=>1, "evening"=>2}, "promo.used"=>{"afternoon" => 2}},
-      GroupAndCount.group_and_count(data, "event", "time_of_day"))
+      GroupAndCount.group_and_count(data, :event, :time_of_day))
 
     assert_equal(
       {"bill.split"=>{"Boston"=>{"morning"=>1, "evening"=>1}, "Chicago"=>{"evening"=>1}}, "promo.used"=>{"New York"=>{"afternoon"=>2}}},
-      GroupAndCount.group_and_count(data, ["event", "city", "time_of_day"]))
+      GroupAndCount.group_and_count(data, [:event, :city, :time_of_day]))
 
   end
 end

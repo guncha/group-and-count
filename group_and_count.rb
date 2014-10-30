@@ -1,7 +1,6 @@
 module GroupAndCount
   def self.group_and_count(rows, *keys, **opts)
     keys.flatten!
-    keys.map!(&:to_sym)
 
     result = rows.group_by { |row| row[keys.first] }
 
